@@ -23,6 +23,11 @@ public class Vertex {
         this.blue = blue;
     }
 
+    @Override
+    public String toString() {
+        return "Vertex[" + x + ", " + y + ", " + z + "]";
+    }
+
     /**
      * @return vertex X coordinate
      */

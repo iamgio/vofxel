@@ -19,14 +19,6 @@ public class PlyParser {
     }
 
     /**
-     * Instantiates a {@link PlyParser}
-     * @param file .ply file
-     */
-    public PlyParser(File file) throws IOException {
-        this(new FileInputStream(file));
-    }
-
-    /**
      * Parses the input stream into a list of vertices
      * @throws IOException if an error occurs
      * @return list of vertices

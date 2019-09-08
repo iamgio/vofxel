@@ -12,13 +12,15 @@ import java.util.Arrays;
  */
 public class Cube extends Box {
 
+    private static final double SIZE = .1;
+
     private Vertex[] vertices;
 
     Cube(Vertex[] vertices) {
         this.vertices = vertices;
-        setWidth(0.1);
-        setHeight(0.1);
-        setDepth(0.1);
+        setWidth(SIZE);
+        setHeight(SIZE);
+        setDepth(SIZE);
         PhongMaterial material = new PhongMaterial();
         material.setDiffuseColor(new Color(vertices[0].getRed() / 255.0, vertices[0].getGreen() / 255.0, vertices[0].getBlue() / 255.0, 1));
         material.setSpecularColor(material.getDiffuseColor());
@@ -34,9 +36,33 @@ public class Cube extends Box {
     }
 
     /**
-     * @return 4 vertices which compose the cube
+     * @return 8 vertices which compose the cube
      */
     public Vertex[] getVertices() {
         return vertices;
+    }
+
+    /**
+     * Moves the cube along X-axis slots
+     * @param x slots amount
+     */
+    public void moveX(int x) {
+        setTranslateX(getTranslateX() + SIZE * x);
+    }
+
+    /**
+     * Moves the cube along Y-axis slots
+     * @param y slots amount
+     */
+    public void moveY(int y) {
+        setTranslateY(getTranslateY() + SIZE * y);
+    }
+
+    /**
+     * Moves the cube along Z-axis slots
+     * @param z slots amount
+     */
+    public void moveZ(int z) {
+        setTranslateZ(getTranslateZ() + SIZE * z);
     }
 }

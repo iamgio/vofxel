@@ -10,8 +10,6 @@ import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
 
 /**
  * @author Giorgio Garofalo
@@ -23,9 +21,9 @@ public class AppTest extends Application {
         Group root = new Group();
         PerspectiveCamera camera = new PerspectiveCamera(true);
         Rotate cameraRotateX = new Rotate(-45, Rotate.X_AXIS);
-        Rotate cameraRotateY = new Rotate(180, Rotate.Y_AXIS);
+        Rotate cameraRotateY = new Rotate(0, Rotate.Y_AXIS);
         Rotate cameraRotateZ = new Rotate(0, Rotate.Z_AXIS);
-        Translate cameraTranslate = new Translate(-1, -1, -10);
+        Translate cameraTranslate = new Translate(-1, -1, -5);
         camera.getTransforms().addAll(
                 cameraRotateX,
                 cameraRotateY,
@@ -33,12 +31,11 @@ public class AppTest extends Application {
                 cameraTranslate);
         root.getChildren().add(camera);
 
-        InputStream inputStream = PlyParser.class.getResourceAsStream("/castle.ply");
-        PlyParser parser = new PlyParser(inputStream);
-        List<Cube> cubes = parser.parse().group();
-        for(Cube cube : cubes) {
-            root.getChildren().add(cube);
-        }
+        VoxelModel model = new VoxelModel();
+        model.load(PlyParser.class.getResourceAsStream("/1x2x1.ply"));
+        root.getChildren().add(model);
+
+        model.getCube(0).moveX(2);
 
         Scene scene = new Scene(root, 800, 450, true);
         stage.setTitle("Test 3D");

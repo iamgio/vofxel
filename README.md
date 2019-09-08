@@ -1,5 +1,5 @@
 # Vo(fx)el
-**Vofxel** is a Java library for loading, displaying and editing PLY files exported from [MagicaVoxel](https://ephtracy.github.io/) into JavaFX.
+**Vofxel** is a Java library for loading, displaying and editing PLY files exported from [MagicaVoxel](https://ephtracy.github.io/) into JavaFX, blazingly fast.
 
 ## Installation
 

@@ -16,7 +16,7 @@ public class Cube {
 
     @Override
     public String toString() {
-        return "Cube[" + Arrays.toString(vertices) + "]";
+        return "Cube" + Arrays.toString(vertices);
     }
 
     /**

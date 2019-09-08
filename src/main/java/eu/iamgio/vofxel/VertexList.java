@@ -19,11 +19,14 @@ public class VertexList extends ArrayList<Vertex> {
         List<Cube> cubes = new ArrayList<>();
         Vertex[] vertices = new Vertex[4];
         int vertexIndex = 0;
-        for(int i = 1; i <= size(); i++) {
-            vertices[vertexIndex] = get(i - 1);
-            if(i % 4 == 0) {
+        for(int i = 0; i < size(); i++) {
+            vertices[vertexIndex] = get(i);
+            if(vertexIndex == 3) {
                 cubes.add(new Cube(vertices));
+                vertices = new Vertex[4];
                 vertexIndex = 0;
+            } else {
+                vertexIndex++;
             }
         }
         return cubes;

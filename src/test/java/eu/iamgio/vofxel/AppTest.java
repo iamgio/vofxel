@@ -5,6 +5,7 @@ import javafx.scene.Group;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.PhongMaterial;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
@@ -25,7 +26,7 @@ public class AppTest extends Application {
         Rotate cameraRotateX = new Rotate(-45, Rotate.X_AXIS);
         Rotate cameraRotateY = new Rotate(0, Rotate.Y_AXIS);
         Rotate cameraRotateZ = new Rotate(0, Rotate.Z_AXIS);
-        Translate cameraTranslate = new Translate(-1, -1, -10);
+        Translate cameraTranslate = new Translate(0, 0, -3);
         camera.getTransforms().addAll(
                 cameraRotateX,
                 cameraRotateY,
@@ -33,10 +34,20 @@ public class AppTest extends Application {
                 cameraTranslate);
         root.getChildren().add(camera);
 
+
         VoxelModel model = new VoxelModel();
+        // Load from file
         model.load(PlyParser.class.getResourceAsStream("/castle.ply"));
+        // Rotate it properly
         model.getTransforms().add(new Rotate(60, Rotate.X_AXIS));
         root.getChildren().add(model);
+        // Add some cubes manually
+        Cube cube1 = model.addCube();
+        cube1.setMaterial(new PhongMaterial(Color.RED));
+        cube1.moveZ(-10);
+        Cube cube2 = model.addCube();
+        cube2.setMaterial(new PhongMaterial(Color.BLUE));
+        cube2.moveX(-10);
 
         Scene scene = new Scene(root, 800, 450, true);
 

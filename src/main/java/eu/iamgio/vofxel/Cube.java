@@ -12,7 +12,7 @@ import java.util.Arrays;
  */
 public class Cube extends Box {
 
-    private static final double SIZE = .1;
+    public static final float SIZE = .1f;
 
     private Vertex[] vertices;
 

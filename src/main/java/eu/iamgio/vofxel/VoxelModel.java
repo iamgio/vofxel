@@ -44,4 +44,39 @@ public class VoxelModel extends Group {
     public Cube getCube(int index) {
         return (Cube) getChildren().get(index);
     }
+
+    /**
+     * Adds a new cube to the model
+     * @return the cube itself
+     */
+    public Cube addCube() {
+        Cube cube = getChildren().isEmpty() ? new Cube(new Vertex[]{
+                new Vertex(0, 0, 0, 255, 255, 255),
+                new Vertex(Cube.SIZE, 0, 0, 255, 255, 255),
+                new Vertex(0, Cube.SIZE, 0, 255, 255, 255),
+                new Vertex(0, 0, Cube.SIZE, 255, 255, 255),
+                new Vertex(Cube.SIZE, Cube.SIZE, 0, 255, 255, 255),
+                new Vertex(Cube.SIZE, 0, Cube.SIZE, 255, 255, 255),
+                new Vertex(0, Cube.SIZE, Cube.SIZE, 255, 255, 255),
+                new Vertex(Cube.SIZE, Cube.SIZE, Cube.SIZE, 255, 255, 255)
+        }) : new Cube(getCube(0).getVertices());
+        getChildren().add(cube);
+        return cube;
+    }
+
+    /**
+     * Removes a cube from the model
+     * @param cube cube instance
+     */
+    public void removeCube(Cube cube) {
+        getChildren().remove(cube);
+    }
+
+    /**
+     * Removes a cube from the model
+     * @param index cube index
+     */
+    public void removeCube(int index) {
+        getChildren().remove(index);
+    }
 }

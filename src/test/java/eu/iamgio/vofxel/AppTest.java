@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
+import javafx.scene.SceneAntialiasing;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.transform.Rotate;
@@ -49,7 +50,7 @@ public class AppTest extends Application {
         cube2.setMaterial(new PhongMaterial(Color.BLUE));
         cube2.moveX(-10);
 
-        Scene scene = new Scene(root, 800, 450, true);
+        Scene scene = new Scene(root, 800, 450, true, SceneAntialiasing.BALANCED);
 
         scene.setOnMouseMoved(e -> {
             cameraRotateX.setAngle(cameraRotateX.getAngle() - (e.getSceneY() - oldMouseY) / 20);
@@ -80,7 +81,7 @@ public class AppTest extends Application {
             }
         });
 
-        stage.setTitle("Test 3D");
+        stage.setTitle("Demo");
         stage.setScene(scene);
         scene.setFill(Color.GRAY);
         scene.setCamera(camera);

@@ -26,7 +26,7 @@ public class AppTest extends Application {
         Rotate cameraRotateX = new Rotate(-45, Rotate.X_AXIS);
         Rotate cameraRotateY = new Rotate(0, Rotate.Y_AXIS);
         Rotate cameraRotateZ = new Rotate(0, Rotate.Z_AXIS);
-        Translate cameraTranslate = new Translate(0, 0, -3);
+        Translate cameraTranslate = new Translate(1, -2, -10);
         camera.getTransforms().addAll(
                 cameraRotateX,
                 cameraRotateY,
@@ -37,7 +37,7 @@ public class AppTest extends Application {
 
         VoxelModel model = new VoxelModel();
         // Load from file
-        model.load(PlyParser.class.getResourceAsStream("/castle.ply"));
+        model.load(getClass().getResourceAsStream("/castle.ply"));
         // Rotate it properly
         model.getTransforms().add(new Rotate(60, Rotate.X_AXIS));
         root.getChildren().add(model);

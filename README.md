@@ -56,4 +56,4 @@ cube2.moveX(-10);
 ## Demo
 A simple demonstration can be found [here](https://github.com/iAmGio/vofxel/blob/master/src/test/java/eu/iamgio/vofxel/AppTest.java).
 
-![Result](https://i.imgur.com/wwN5Zh2.png) 
+![Result](https://i.imgur.com/EdvIPkF.png) 

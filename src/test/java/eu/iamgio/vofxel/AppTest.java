@@ -16,6 +16,8 @@ import java.io.IOException;
  */
 public class AppTest extends Application {
 
+    private double oldMouseX, oldMouseY;
+
     @Override
     public void start(Stage stage) throws IOException {
         Group root = new Group();
@@ -23,7 +25,7 @@ public class AppTest extends Application {
         Rotate cameraRotateX = new Rotate(-45, Rotate.X_AXIS);
         Rotate cameraRotateY = new Rotate(0, Rotate.Y_AXIS);
         Rotate cameraRotateZ = new Rotate(0, Rotate.Z_AXIS);
-        Translate cameraTranslate = new Translate(-1, -1, -5);
+        Translate cameraTranslate = new Translate(-1, -1, -10);
         camera.getTransforms().addAll(
                 cameraRotateX,
                 cameraRotateY,
@@ -32,12 +34,41 @@ public class AppTest extends Application {
         root.getChildren().add(camera);
 
         VoxelModel model = new VoxelModel();
-        model.load(PlyParser.class.getResourceAsStream("/1x2x1.ply"));
+        model.load(PlyParser.class.getResourceAsStream("/castle.ply"));
+        model.getTransforms().add(new Rotate(60, Rotate.X_AXIS));
         root.getChildren().add(model);
 
-        model.getCube(0).moveX(2);
-
         Scene scene = new Scene(root, 800, 450, true);
+
+        scene.setOnMouseMoved(e -> {
+            cameraRotateX.setAngle(cameraRotateX.getAngle() - (e.getSceneY() - oldMouseY) / 20);
+            cameraRotateY.setAngle(cameraRotateY.getAngle() + (e.getSceneX() - oldMouseX) / 20);
+            oldMouseX = e.getSceneX();
+            oldMouseY = e.getSceneY();
+        });
+        scene.setOnKeyPressed(e -> {
+            switch(e.getCode()) {
+                case UP:
+                    cameraTranslate.setY(cameraTranslate.getY() - 0.05);
+                    break;
+                case DOWN:
+                    cameraTranslate.setY(cameraTranslate.getY() + 0.05);
+                    break;
+                case RIGHT:
+                    cameraTranslate.setX(cameraTranslate.getX() + 0.05);
+                    break;
+                case LEFT:
+                    cameraTranslate.setX(cameraTranslate.getX() - 0.05);
+                    break;
+                case A:
+                    cameraTranslate.setZ(cameraTranslate.getZ() - 0.05);
+                    break;
+                case Z:
+                    cameraTranslate.setZ(cameraTranslate.getZ() + 0.05);
+                    break;
+            }
+        });
+
         stage.setTitle("Test 3D");
         stage.setScene(scene);
         scene.setFill(Color.GRAY);

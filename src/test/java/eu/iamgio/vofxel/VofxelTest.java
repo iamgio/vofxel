@@ -18,13 +18,13 @@ class VofxelTest {
         InputStream inputStream = PlyParser.class.getResourceAsStream("/3x3x3.ply");
         PlyParser parser = new PlyParser(inputStream);
         VertexList vertices = parser.parse();
-        assertEquals(288, vertices.size());
+        assertEquals(160, vertices.size());
         List<Cube> cubes = vertices.group();
-        assertEquals(72, cubes.size());
+        assertEquals(20, cubes.size());
         Cube cube = cubes.get(0);
         Vertex vertex = cube.getVertices()[0];
-        assertEquals(0, vertex.getX());
-        assertEquals(0.2, vertex.getY());
-        assertEquals(0.3, vertex.getZ());
+        assertEquals(0.205f, vertex.getX());
+        assertEquals(0.205f, vertex.getY());
+        assertEquals(0.305f, vertex.getZ());
     }
 }

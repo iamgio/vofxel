@@ -6,27 +6,27 @@
 ### Maven
 ```xml
 <repositories>
-	<repository>
-		<id>jitpack.io</id>
-		<url>https://jitpack.io</url>
-	</repository>
+  <repository>
+    <id>jitpack.io</id>
+    <url>https://jitpack.io</url>
+  </repository>
 </repositories>
 <dependency>
-	<groupId>com.github.iAmGio</groupId>
-	<artifactId>vofxel</artifactId>
-	<version>v0.0.1</version>
+  <groupId>com.github.iAmGio</groupId>
+  <artifactId>vofxel</artifactId>
+  <version>v0.0.1</version>
 </dependency>
 ```
 
 ### Gradle
 ```gradle
 allprojects {
-	repositories {
-		maven { url 'https://jitpack.io' }
-	}
+  repositories {
+    maven { url 'https://jitpack.io' }
+  }
 }
 dependencies {
-	implementation 'com.github.iAmGio:vofxel:v0.0.1'
+  implementation 'com.github.iAmGio:vofxel:v0.0.1'
 }
 ```
 
@@ -38,7 +38,7 @@ root.getChildren().add(model);
 model.load(getClass().getResourceAsStream("/file.ply"));
 ```
 
-Note that the file must be exported using the _cube_ mode from MagicaVoxel (or any other tool that supports this export mode):
+> Note that the file must be exported using the _cube_ mode from MagicaVoxel (or any other tool that supports this export mode):   
 ![Export](https://i.imgur.com/6jpqJFO.png)
    
 Create model from scratch:

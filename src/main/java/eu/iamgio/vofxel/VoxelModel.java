@@ -90,4 +90,43 @@ public class VoxelModel extends Group {
     public void removeCube(int index) {
         getChildren().remove(index);
     }
+
+    /**
+     * @return model width
+     */
+    public int getWidth() {
+        List<Cube> cubes = getCubes();
+        if(cubes.isEmpty()) return 0;
+        double width = -1;
+        for(Cube cube : cubes) {
+            if(cube.getTranslateX() > width) width = cube.getTranslateX();
+        }
+        return (int) ((width + Cube.SIZE) / Cube.SIZE);
+    }
+
+    /**
+     * @return model depth
+     */
+    public int getDepth() {
+        List<Cube> cubes = getCubes();
+        if(cubes.isEmpty()) return 0;
+        double depth = -1;
+        for(Cube cube : cubes) {
+            if(cube.getTranslateY() > depth) depth = cube.getTranslateY();
+        }
+        return (int) ((depth + Cube.SIZE) / Cube.SIZE);
+    }
+
+    /**
+     * @return model height
+     */
+    public int getHeight() {
+        List<Cube> cubes = getCubes();
+        if(cubes.isEmpty()) return 0;
+        double height = -1;
+        for(Cube cube : cubes) {
+            if(cube.getTranslateZ() > height) height = cube.getTranslateZ();
+        }
+        return (int) ((height + Cube.SIZE) / Cube.SIZE);
+    }
 }

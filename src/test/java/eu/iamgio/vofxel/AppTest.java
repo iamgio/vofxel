@@ -12,6 +12,7 @@ import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Random;
 
 /**
  * @author Giorgio Garofalo
@@ -42,13 +43,26 @@ public class AppTest extends Application {
         // Rotate it properly
         model.getTransforms().add(new Rotate(60, Rotate.X_AXIS));
         root.getChildren().add(model);
-        // Add some cubes manually
-        Cube cube1 = model.addCube();
-        cube1.setMaterial(new PhongMaterial(Color.RED));
-        cube1.moveZ(-10);
-        Cube cube2 = model.addCube();
-        cube2.setMaterial(new PhongMaterial(Color.BLUE));
-        cube2.moveX(-10);
+        // Add terrain
+        int width = model.getWidth();
+        int depth = model.getDepth();
+        final int size = 15;
+        Random random = new Random();
+        for(int x = -size; x < width + size; x++) {
+            for(int y = -size; y < depth + size; y++) {
+                Cube cube = model.addCube();
+                cube.setTranslateX(0);
+                cube.setTranslateY(0);
+                cube.moveX(x);
+                cube.moveY(y);
+                cube.moveZ(-7); // Value depends on model
+                cube.setTranslateZ(cube.getTranslateZ() + (random.nextInt(10) / 80.0)); // Random Z
+                // Random green color
+                cube.setMaterial(new PhongMaterial(
+                        new Color(Color.GREEN.getRed(), Color.GREEN.getGreen() + (random.nextInt(4) / 10.0), Color.GREEN.getBlue(), 1)
+                ));
+            }
+        }
 
         Scene scene = new Scene(root, 800, 450, true, SceneAntialiasing.BALANCED);
 

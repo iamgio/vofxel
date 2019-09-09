@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Represents a voxel model built by cubes
@@ -37,12 +38,22 @@ public class VoxelModel extends Group {
     }
 
     /**
+     * @return cubes in the model
+     */
+    public List<Cube> getCubes() {
+        return getChildren().stream()
+                .filter(Cube.class::isInstance)
+                .map(Cube.class::cast)
+                .collect(Collectors.toList());
+    }
+
+    /**
      * Gets a specific {@link Cube} by index
      * @param index cube index
      * @return corresponding cube
      */
     public Cube getCube(int index) {
-        return (Cube) getChildren().get(index);
+        return getCubes().get(index);
     }
 
     /**
@@ -50,7 +61,7 @@ public class VoxelModel extends Group {
      * @return the cube itself
      */
     public Cube addCube() {
-        Cube cube = getChildren().isEmpty() ? new Cube(new Vertex[]{
+        Cube cube = getCubes().isEmpty() ? new Cube(new Vertex[]{
                 new Vertex(0, 0, 0, 255, 255, 255),
                 new Vertex(Cube.SIZE, 0, 0, 255, 255, 255),
                 new Vertex(0, Cube.SIZE, 0, 255, 255, 255),

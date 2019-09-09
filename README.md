@@ -14,7 +14,7 @@
 <dependency>
   <groupId>com.github.iAmGio</groupId>
   <artifactId>vofxel</artifactId>
-  <version>v0.0.1</version>
+  <version>v0.0.2</version>
 </dependency>
 ```
 
@@ -26,7 +26,7 @@ allprojects {
   }
 }
 dependencies {
-  implementation 'com.github.iAmGio:vofxel:v0.0.1'
+  implementation 'com.github.iAmGio:vofxel:v0.0.2'
 }
 ```
 
